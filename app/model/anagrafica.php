@@ -11,7 +11,7 @@ require_once $config['XCRUD_PATH'] . 'xcrud.php';
             
 //            $xcrud->unset_add();
 //            $xcrud->unset_edit();
-            $xcrud->unset_remove();
+ //           $xcrud->unset_remove();
             
             $xcrud->table_name('Gestione Accessi');
             

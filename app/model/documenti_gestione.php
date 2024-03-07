@@ -33,11 +33,12 @@ require_once $config['XCRUD_PATH'] . 'xcrud.php';
             
                 $xcrud->fields('utente_id, data_ora_caricamento, pubblico, utente_id_destinatario', true);
                 $xcrud->columns('pubblico, utente_id_destinatario, descrizione', true);
-            }  else if ( $_SESSION['utente_id_ruolo'] <= 2) {
+            }  else if ( $_SESSION['utente_id_ruolo'] == 2 || $_SESSION['utente_id_ruolo'] == 6) {
                 // CTS - ADMIN
                 $xcrud->unset_remove(true, 'utente_id','!=',$_SESSION['utente_id']);
                 $xcrud->unset_edit(true, 'utente_id','!=',$_SESSION['utente_id']);
-                $xcrud->where('utente_id in (SELECT id_cts_sede FROM associazioni_cts WHERE associazioni_cts.id_cts_admin = '.$_SESSION['utente_id'].' ) or documenti.utente_id = '.$_SESSION['utente_id'] );
+                // $xcrud->where('utente_id in (SELECT id_cts_sede FROM associazioni_cts WHERE associazioni_cts.id_cts_admin = '.$_SESSION['utente_id'].' ) or documenti.utente_id = '.$_SESSION['utente_id'] );
+                $xcrud->where('utente_id = '.$_SESSION['utente_id'].' or documenti.utente_id_destinatario = '.$_SESSION['utente_id'] );
                 $xcrud->fields('utente_id, data_ora_caricamento, pubblico, utente_id_destinatario', true);
                 $xcrud->columns('pubblico, utente_id_destinatario', true);
             }
@@ -45,12 +46,12 @@ require_once $config['XCRUD_PATH'] . 'xcrud.php';
               // CTS SEDE
                 $xcrud->where('utente_id',  $_SESSION['utente_id'] );
                 // non può modificare o cancellare se non è il proprietario
-                $xcrud->unset_remove();
+                $xcrud->unset_remove(true, 'utente_id','!=',$_SESSION['utente_id']);
                 $xcrud->unset_edit(true, 'utente_id','!=',$_SESSION['utente_id']);
 
                 // non può vedere se è pubblico
-                $xcrud->fields('data_ora_caricamento, pubblico, utente_id, utente_id_destinatario', true);
-                $xcrud->columns('pubblico, utente_id, descrizione, utente_id_destinatario', true, true, true);
+                $xcrud->fields('data_ora_caricamento, pubblico, utente_id', true);
+                $xcrud->columns('pubblico, utente_id, descrizione', true, true, true);
 
                 // $xcrud->before_update('cripta_password');
                
@@ -62,15 +63,15 @@ require_once $config['XCRUD_PATH'] . 'xcrud.php';
 
             $xcrud->change_type('nome_file', 'file', '', array('not_rename'=>false));
             $xcrud->readonly('utente_id');
-            
-             // $xcrud->relation('comuni_basilicata_id','utente','id',array('cognome','nome'),array('tipo_utente' => 1));
+            if ($_SESSION['utente_id_ruolo'] == 3) {
+                $xcrud->relation('utente_id_destinatario','utente','id',array('denominazione'),array('ruolo_id' => 6));
+            }
            
-           /*   $xcrud->change_type('attivo', 'select', '', array('values' => 
-                                        array(0 => 'NO', 1 => 'SI'))
-                                ); */
+            $xcrud->change_type('utente_id_destinatario', 'select', ''
+                                );
              
              $xcrud->label('utente_id','UTENTE');
-           //  $xcrud->label('utente_id_destinatario','DESTINATARI');
+             $xcrud->label('utente_id_destinatario','Destinatario');
              $xcrud->label('data_ora_caricamento','Caricato il');
             
              

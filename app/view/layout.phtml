@@ -19,7 +19,7 @@
           
           if ( $_SESSION['utente_id_ruolo'] == 1 ) {
               require_once "dashboard_superadmin.phtml";
-          } else if ( $_SESSION['utente_id_ruolo'] == 2  ) {
+          } else if ( $_SESSION['utente_id_ruolo'] == 2 || $_SESSION['utente_id_ruolo'] == 6  ) {
                 // CTS-ADMIN
                require_once "dashboard_ctsadmin.phtml";
           } else if ( $_SESSION['utente_id_ruolo'] == 3  ) {

@@ -50,11 +50,15 @@ public function vedi_profilo($id_utente){
 
 
 public function conta_documenti( $id_utente = null ){
-            
-                 $this->db->query("SELECT COUNT(*) as n_documenti 
+            // query in caso di associazione manuale dei centri
+               /*   $this->db->query("SELECT COUNT(*) as n_documenti 
                                             FROM documenti WHERE documenti.utente_id IN  ( SELECT id_cts_sede FROM associazioni_cts, documenti WHERE associazioni_cts.id_cts_admin = :id )
-                                            or documenti.utente_id = :id;");
-                                
+                                            or documenti.utente_id = :id;"); */
+
+
+                                            $this->db->query("SELECT COUNT(*) as n_documenti 
+                                            FROM documenti  WHERE documenti.utente_id_destinatario = :id  or documenti.utente_id = :id;");
+
             
             // Bind dei parametri
              $this->db->bind(':id', $id_utente);
@@ -80,15 +84,22 @@ public function statistiche_documenti( $id_utente = null) {
     if ($id_utente > 0) {
         
     
-                 $this->db->query("SELECT documenti.data_ora_caricamento, documenti.nome_file, documenti.oggetto, utente.denominazione
+               /*   $this->db->query("SELECT documenti.data_ora_caricamento, documenti.nome_file, documenti.oggetto, utente.denominazione
                                     FROM documenti
                                     LEFT JOIN utente ON documenti.utente_id = utente.id
                                     WHERE documenti.utente_id IN  ( SELECT id_cts_sede FROM associazioni_cts, documenti WHERE associazioni_cts.id_cts_admin = :id )
-                                    or documenti.utente_id = :id 
-                                    
+                                    or documenti.utente_id = :id         
                                     
                             ORDER BY  date(data_ora_caricamento) desc
-                            LIMIT 10 ;");
+                            LIMIT 10 ;"); */
+
+                $this->db->query("SELECT documenti.data_ora_caricamento, documenti.nome_file, documenti.oggetto, utente.denominazione
+                                FROM documenti
+                                LEFT JOIN utente ON documenti.utente_id = utente.id
+                                WHERE documenti.utente_id = :id
+                                or documenti.utente_id_destinatario = :id  
+                                ORDER BY  date(data_ora_caricamento) desc
+                                LIMIT 10 ;");
             
                 // Bind dei parametri
                 $this->db->bind(':id', $id_utente);

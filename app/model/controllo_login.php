@@ -16,10 +16,11 @@ $email = filter_input(INPUT_POST, 'indirizzo_email', FILTER_SANITIZE_EMAIL );
 $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING );
 $client_ip = filter_input(INPUT_POST, 'ip_client', FILTER_SANITIZE_STRING );
 
-$otp = filter_input(INPUT_POST, 'codice_otp', FILTER_SANITIZE_NUMBER_INT );
+// $otp = filter_input(INPUT_POST, 'codice_otp', FILTER_SANITIZE_NUMBER_INT );
 
- if ($email && $password && $otp) {
-            $authenticator = new PHPGangsta_GoogleAuthenticator();
+ // if ($email && $password && $otp) {
+    if ($email && $password) {
+          //  $authenticator = new PHPGangsta_GoogleAuthenticator();
    
             $login = new Login;
             $controllo_login = $login->controllo($email, $password);
@@ -37,20 +38,20 @@ $otp = filter_input(INPUT_POST, 'codice_otp', FILTER_SANITIZE_NUMBER_INT );
             
           
             // $vedi_secret = Login::controlla_secret($client_ip, $utente_id);
-            $vedi_secret = $login->controlla_secret($client_ip, $utente_id);
+         /*    $vedi_secret = $login->controlla_secret($client_ip, $utente_id);
             $secret = $vedi_secret['secret'];
-            $id_record = $vedi_secret['id'];
+            $id_record = $vedi_secret['id']; */
          
 
-            $tolerance = 1;
+         //   $tolerance = 1;
                 //Every otp is valid for 30 sec.
                 // If somebody provides OTP at 29th sec, by the time it reaches the server OTP is expired.
                 //So we can give tolerance =1, it will check current  & previous OTP.
                 // tolerance =2, verifies current and last two OTPS
 
-            $checkResult = $authenticator->verifyCode($secret, $otp, $tolerance);    
+         //   $checkResult = $authenticator->verifyCode($secret, $otp, $tolerance);    
 
-            if ($checkResult) 
+         /*    if ($checkResult) 
             {
                  // $valida_secret = Login::valida_secret($id_record);
                  $valida_secret = $login->valida_secret($id_record);
@@ -72,6 +73,25 @@ $otp = filter_input(INPUT_POST, 'codice_otp', FILTER_SANITIZE_NUMBER_INT );
                     
                 }
                 
+
+            } else {
+                echo 'AUTENTICAZIONE FALLITA';
+                exit;
+            } */
+
+            if ($controllo_login) 
+            {
+                
+                    $utente = new Utente;
+                    $registra_sessione = $utente->registra_sessione( $utente_id, $utente_nome, $utente_email,
+                            $utente_data_scadenza, $utente_attivo, $utente_ruolo, $utente_id_ruolo);
+                        
+                    if (!$registra_sessione) {
+                        die('ERRORE GESTIONE SESSIONE');
+                    }
+                    header('Location: index.php?page=layout');
+                    exit();
+               
 
             } else {
                 echo 'AUTENTICAZIONE FALLITA';
