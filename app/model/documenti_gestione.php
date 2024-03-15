@@ -66,8 +66,14 @@ require_once $config['XCRUD_PATH'] . 'xcrud.php';
             if ($_SESSION['utente_id_ruolo'] == 3) {
                 $xcrud->relation('utente_id_destinatario','utente','id',array('denominazione'),array('ruolo_id' => 6));
             }
-           
-            $xcrud->change_type('utente_id_destinatario', 'select', ''
+            // IDC sarebbe id del centro trasfusionale
+            if ( isset($_GET['idc']) ) {
+                $centro = $_GET['idc'];
+                
+            } else {
+                $centro = 0;
+            }
+            $xcrud->change_type('utente_id_destinatario', 'select', $centro
                                 );
              
              $xcrud->label('utente_id','UTENTE');

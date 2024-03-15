@@ -4,62 +4,70 @@
          
               
            <div class="col-sm-6 col-lg-3">
-              <div class="card mb-4 text-white bg-info">
+            <a href="index.php?page=documenti_gestione&idc=42" style="text-decoration: none;">
+              <div class="card mb-4 text-white bg-info"  style="height:100px;">
                 <div class="card-body pb-0 d-flex justify-content-between align-items-start">
                   <div>
                     <div class="fs-4 fw-semibold"><?php # $numero_totale_macchine['numero_macchine']; ?> <span class="fs-6 fw-normal">
                         <svg class="icon">
                           <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-top"></use>
-                        </svg>Attuale</span></div>
-                    <div>Tot. NUMERO DOCUMENTI</div>
-                    <?= $numero_documenti['n_documenti']; ?>
+                        </svg>Invia file</span></div>
+                    <div>CENTRO TRASFUSIONALE POTENZA</div>
+                    <?php #echo $numero_documenti['n_documenti']; ?>
                   </div>
                 
                 </div>
-                <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+                <!-- <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
                   <canvas class="chart" id="card-chart2" height="70"></canvas>
-                </div>
+                </div> -->
               </div>
+            </a>
             </div>
-              
-               <!-- /.col-->
-           <!--  <div class="col-sm-6 col-lg-3">
-              <div class="card mb-4 text-white bg-warning">
-                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                  <div>
-                    <div class="fs-4 fw-semibold"><?php # $numero_tot_prodotti_cat_generale['num_prodotti_cat_generale']; ?><span class="fs-6 fw-normal">
-                        <svg class="icon">
-                          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-top"></use>
-                        </svg></span></div>
-                    <div>N. UDR</div>
+
+            <div class="col-sm-6 col-lg-3">
+              <a href="index.php?page=documenti_gestione&idc=41" style="text-decoration: none;">
+                <div class="card mb-4 text-white bg-warning"  style="height:100px;">
+                  <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="fs-4 fw-semibold">
+                        <span class="fs-6 fw-normal">
+                          <svg class="icon">
+                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-top"></use>
+                          </svg>Invia file</span></div>
+                      <div>CENTRO TRASFUSIONALE MELFI</div>
+                      <?php #echo $numero_documenti['n_documenti']; ?>
+                    </div>
+                  
                   </div>
-                
+                  <!-- <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+                    <canvas class="chart" id="card-chart2" height="70"></canvas>
+                  </div> -->
                 </div>
-                <div class="c-chart-wrapper mt-3" style="height:70px;">
-                  <canvas class="chart" id="card-chart3" height="70"></canvas>
-                </div>
-              </div>
-            </div> -->
-               
-                <!-- /.col-->
-          <!--   <div class="col-sm-6 col-lg-3">
-              <div class="card mb-4 text-white bg-danger">
-                <div class="card-body pb-0 d-flex justify-content-between align-items-start">
-                  <div>
-                    <div class="fs-4 fw-semibold"><?php # $numero_tot_prodotti_cat_esercente['num_prodotti_cat_esercente'] ?> <span class="fs-6 fw-normal">
-                        <svg class="icon">
-                          <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-bottom"></use>
-                        </svg> </span></div>
-                    <div>N. PDR</div>
+              </a>
+            </div>
+
+            <div class="col-sm-6 col-lg-3">
+              <a href="index.php?page=documenti_gestione&idc=43" style="text-decoration: none;">
+                <div class="card mb-4 text-white bg-danger"  style="height:100px;">
+                  <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="fs-4 fw-semibold">
+                        <span class="fs-6 fw-normal">
+                          <svg class="icon">
+                            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-top"></use>
+                          </svg>Invia file</span></div>
+                      <div>CENTRO TRASFUSIONALE MATERA</div>
+                      <?php #echo $numero_documenti['n_documenti']; ?>
+                    </div>
+                  
                   </div>
-                
+                  <!-- <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+                    <canvas class="chart" id="card-chart2" height="70"></canvas>
+                  </div> -->
                 </div>
-                <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
-                  <canvas class="chart" id="card-chart4" height="70"></canvas>
-                </div>
-              </div>
-            </div> -->
-            <!-- /.col-->
+              </a>
+            </div>
+        
               
           </div><!-- ROW -->
           
@@ -123,7 +131,7 @@
                                 <td class="text-center">    
                                   <div class="clearfix">
                                   
-                                    <div class="class="text-center""><small class="text-medium-emphasis">
+                                    <div class="text-center"><small class="text-medium-emphasis">
                                       <a href="../app/xcrud/documenti/<?= $nome_file; ?>" target="_blank"><?= $nome_file; ?></a>
                                     </small></div>
                                   </div>
@@ -165,7 +173,9 @@
                       </thead>
                       <tbody>
                            <?php 
+                           
                                                 $img_count = 0;
+                                                if ($elenco_login_utente) {
                                                 foreach( $elenco_login_utente as $row_utente) {
                                                             $utente = $row_utente["utente"];  
                                                             $data_scadenza =  $row_utente["data_scadenza"];
@@ -174,6 +184,7 @@
                                                             $ultimo_login =  $row_utente["ultimo_login"];
                                                             $giorni_da_utlimo_login =  $row_utente["giorni_da_utlimo_login"];
                                                             $img_count++;
+                                                }
                                                             
                                    
                             ?>
@@ -212,6 +223,7 @@
                     
                       </tbody>
                     </table>
+
                   </div>
           </div><!-- End card body user -->
           </div>

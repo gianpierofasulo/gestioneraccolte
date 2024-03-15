@@ -8,7 +8,12 @@
     <div class="card mb-4">
         <?php
                
-                echo $xcrud->render(); 
+                
+                if ($centro >  0) {
+                        echo $xcrud->render('create');
+                    } else{
+                        echo $xcrud->render(); 
+                    }
      ?>
     </div>
   </div> 

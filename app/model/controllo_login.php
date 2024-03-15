@@ -23,7 +23,7 @@ $client_ip = filter_input(INPUT_POST, 'ip_client', FILTER_SANITIZE_STRING );
           //  $authenticator = new PHPGangsta_GoogleAuthenticator();
    
             $login = new Login;
-            $controllo_login = $login->controllo($email, $password);
+            $controllo_login = $login->controllo($email , $password );
             
             
             $utente_id = $controllo_login['id'];
@@ -85,7 +85,7 @@ $client_ip = filter_input(INPUT_POST, 'ip_client', FILTER_SANITIZE_STRING );
                     $utente = new Utente;
                     $registra_sessione = $utente->registra_sessione( $utente_id, $utente_nome, $utente_email,
                             $utente_data_scadenza, $utente_attivo, $utente_ruolo, $utente_id_ruolo);
-                        
+                    $login->registra_secret( $client_ip, $utente_id, '');    
                     if (!$registra_sessione) {
                         die('ERRORE GESTIONE SESSIONE');
                     }
