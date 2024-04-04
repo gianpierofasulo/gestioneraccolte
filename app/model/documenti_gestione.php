@@ -62,6 +62,10 @@ require_once $config['XCRUD_PATH'] . 'xcrud.php';
             $xcrud->relation('utente_id','utente','id',array('denominazione'));
 
             $xcrud->change_type('nome_file', 'file', '', array('not_rename'=>false));
+            $xcrud->change_type('nome_file_2', 'file', '', array('not_rename'=>false));
+            $xcrud->change_type('nome_file_3', 'file', '', array('not_rename'=>false));
+            $xcrud->change_type('nome_file_4', 'file', '', array('not_rename'=>false));
+
             $xcrud->readonly('utente_id');
             if ($_SESSION['utente_id_ruolo'] == 3) {
                 $xcrud->relation('utente_id_destinatario','utente','id',array('denominazione'),array('ruolo_id' => 6));
@@ -75,7 +79,11 @@ require_once $config['XCRUD_PATH'] . 'xcrud.php';
             }
             $xcrud->change_type('utente_id_destinatario', 'select', $centro
                                 );
-             
+            $xcrud->label('nome_file','FILE 1');
+            $xcrud->label('nome_file_2','FILE 2');
+            $xcrud->label('nome_file_3','FILE 3');
+            $xcrud->label('nome_file_4','FILE 4');
+
              $xcrud->label('utente_id','UTENTE');
              $xcrud->label('utente_id_destinatario','Destinatario');
              $xcrud->label('data_ora_caricamento','Caricato il');

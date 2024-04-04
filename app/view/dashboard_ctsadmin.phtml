@@ -11,7 +11,7 @@
                         <svg class="icon">
                           <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-arrow-top"></use>
                         </svg>Attuale</span></div>
-                    <div>Tot. NUMERO DOCUMENTI</div>
+                    <div>Tot. NUMERO CARICAMENTI</div>
                     <?= $numero_documenti['n_documenti']; ?>
                   </div>
                 
@@ -86,7 +86,7 @@
                             <th class="text-center">Data/ora caricamento</th>
                             <th>Oggetto</th>
                           
-                            <th class="text-center">Nome file</th>
+                            <th class="text-center">Files caricati</th>
                            
                           </tr>
                         </thead>
@@ -98,6 +98,9 @@
                                                 foreach( $ultimi_10_documenti as $row_documenti) {
                                                             $data_ora_caricamento = $row_documenti["data_ora_caricamento"];  
                                                             $nome_file =  $row_documenti["nome_file"];
+                                                            $nome_file_2 =  $row_documenti["nome_file_2"];
+                                                            $nome_file_3 =  $row_documenti["nome_file_3"];
+                                                            $nome_file_4 =  $row_documenti["nome_file_4"];
                                                             $oggetto =  $row_documenti["oggetto"];
                                                             $denominazione =  $row_documenti["denominazione"];
                                                          
@@ -123,9 +126,26 @@
 
                                 <td class="text-center">    
                                   <div class="clearfix">
-                                  
                                     <div class="class="text-center""><small class="text-medium-emphasis">
                                       <a href="../app/xcrud/documenti/<?= $nome_file; ?>" target="_blank"><?= $nome_file; ?></a>
+                                    </small></div>
+                                  </div>
+
+                                  <div class="clearfix">
+                                    <div class="class="text-center""><small class="text-medium-emphasis">
+                                      <a href="../app/xcrud/documenti/<?= $nome_file_2; ?>" target="_blank"><?= $nome_file_2; ?></a>
+                                    </small></div>
+                                  </div>
+
+                                  <div class="clearfix">
+                                    <div class="class="text-center""><small class="text-medium-emphasis">
+                                      <a href="../app/xcrud/documenti/<?= $nome_file_3; ?>" target="_blank"><?= $nome_file_3; ?></a>
+                                    </small></div>
+                                  </div>
+
+                                  <div class="clearfix">
+                                    <div class="class="text-center""><small class="text-medium-emphasis">
+                                      <a href="../app/xcrud/documenti/<?= $nome_file_4; ?>" target="_blank"><?= $nome_file_4; ?></a>
                                     </small></div>
                                   </div>
                                 </td>

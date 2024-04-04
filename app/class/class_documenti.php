@@ -93,7 +93,7 @@ public function statistiche_documenti( $id_utente = null) {
                             ORDER BY  date(data_ora_caricamento) desc
                             LIMIT 10 ;"); */
 
-                $this->db->query("SELECT documenti.data_ora_caricamento, documenti.nome_file, documenti.oggetto, utente.denominazione
+                $this->db->query("SELECT documenti.data_ora_caricamento, documenti.nome_file, documenti.nome_file_2, documenti.nome_file_3, documenti.nome_file_4, documenti.oggetto, utente.denominazione
                                 FROM documenti
                                 LEFT JOIN utente ON documenti.utente_id = utente.id
                                 WHERE documenti.utente_id = :id
