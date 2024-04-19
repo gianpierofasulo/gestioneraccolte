@@ -98,9 +98,17 @@
                                                 foreach( $ultimi_10_documenti as $row_documenti) {
                                                             $data_ora_caricamento = $row_documenti["data_ora_caricamento"];  
                                                             $nome_file =  $row_documenti["nome_file"];
-                                                            $nome_file_2 =  $row_documenti["nome_file_2"];
-                                                            $nome_file_3 =  $row_documenti["nome_file_3"];
-                                                            $nome_file_4 =  $row_documenti["nome_file_4"];
+                                                            if (array_key_exists("nome_file_2", $row_documenti)) {
+                                                              $nome_file_2 =  $row_documenti["nome_file_2"];
+                                                            }
+                                                            if (array_key_exists("nome_file_3", $row_documenti)) {
+                                                              $nome_file_3 =  $row_documenti["nome_file_3"];
+                                                            }
+                                                            if (array_key_exists("nome_file_4", $row_documenti)) {
+                                                              $nome_file_4 =  $row_documenti["nome_file_4"];
+                                                            }
+                                                           
+                                                            
                                                             $oggetto =  $row_documenti["oggetto"];
                                                             $denominazione =  $row_documenti["denominazione"];
                                                          
@@ -131,24 +139,30 @@
                                     </small></div>
                                   </div>
 
+                                 <?php if (isset($nome_file_2)) { ?>
                                   <div class="clearfix">
                                     <div class="class="text-center""><small class="text-medium-emphasis">
                                       <a href="../app/xcrud/documenti/<?= $nome_file_2; ?>" target="_blank"><?= $nome_file_2; ?></a>
                                     </small></div>
                                   </div>
+                                 <?php } ?> 
 
+                                 <?php if (isset($nome_file_3)) { ?> 
                                   <div class="clearfix">
                                     <div class="class="text-center""><small class="text-medium-emphasis">
                                       <a href="../app/xcrud/documenti/<?= $nome_file_3; ?>" target="_blank"><?= $nome_file_3; ?></a>
                                     </small></div>
                                   </div>
+                                  <?php } ?> 
 
+                                  <?php if (isset($nome_file_4)) { ?> 
                                   <div class="clearfix">
                                     <div class="class="text-center""><small class="text-medium-emphasis">
                                       <a href="../app/xcrud/documenti/<?= $nome_file_4; ?>" target="_blank"><?= $nome_file_4; ?></a>
                                     </small></div>
                                   </div>
                                 </td>
+                                <?php } ?>
                            
                               
                               </tr>

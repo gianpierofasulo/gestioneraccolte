@@ -100,11 +100,23 @@
                         </thead>
 
                           <tbody>
-                          <?php 
-                                      if ($ultimi_10_documenti ) {              
+                          <?php
+                                    if ($ultimi_10_documenti ) {
+                                                
                                                 foreach( $ultimi_10_documenti as $row_documenti) {
                                                             $data_ora_caricamento = $row_documenti["data_ora_caricamento"];  
                                                             $nome_file =  $row_documenti["nome_file"];
+                                                            if (array_key_exists("nome_file_2", $row_documenti)) {
+                                                              $nome_file_2 =  $row_documenti["nome_file_2"];
+                                                            }
+                                                            if (array_key_exists("nome_file_3", $row_documenti)) {
+                                                              $nome_file_3 =  $row_documenti["nome_file_3"];
+                                                            }
+                                                            if (array_key_exists("nome_file_4", $row_documenti)) {
+                                                              $nome_file_4 =  $row_documenti["nome_file_4"];
+                                                            }
+                                                           
+                                                            
                                                             $oggetto =  $row_documenti["oggetto"];
                                                             $denominazione =  $row_documenti["denominazione"];
                                                          
@@ -128,13 +140,38 @@
                                   </div>
                                 </td>
 
-                                <td class="text-center">    
+                                <td class="text-center">
+
                                   <div class="clearfix">
-                                  
                                     <div class="text-center"><small class="text-medium-emphasis">
                                       <a href="../app/xcrud/documenti/<?= $nome_file; ?>" target="_blank"><?= $nome_file; ?></a>
                                     </small></div>
                                   </div>
+
+                                  <?php if (isset($nome_file_2)) { ?>
+                                  <div class="clearfix">
+                                    <div class="class="text-center""><small class="text-medium-emphasis">
+                                      <a href="../app/xcrud/documenti/<?= $nome_file_2; ?>" target="_blank"><?= $nome_file_2; ?></a>
+                                    </small></div>
+                                  </div>
+                                 <?php } ?> 
+
+                                 <?php if (isset($nome_file_3)) { ?> 
+                                  <div class="clearfix">
+                                    <div class="class="text-center""><small class="text-medium-emphasis">
+                                      <a href="../app/xcrud/documenti/<?= $nome_file_3; ?>" target="_blank"><?= $nome_file_3; ?></a>
+                                    </small></div>
+                                  </div>
+                                  <?php } ?> 
+
+                                  <?php if (isset($nome_file_4)) { ?> 
+                                  <div class="clearfix">
+                                    <div class="class="text-center""><small class="text-medium-emphasis">
+                                      <a href="../app/xcrud/documenti/<?= $nome_file_4; ?>" target="_blank"><?= $nome_file_4; ?></a>
+                                    </small></div>
+                                  </div>
+                                </td>
+                                <?php } ?>
                                 </td>
                            
                               
@@ -235,95 +272,3 @@
         </div>
   <script  src="https://code.jquery.com/jquery-3.6.1.min.js"  integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
-<script>
-$( document ).ready(function() {
-    
-    
-
-
-<!-- var cardChartEsercenti = new Chart(document.getElementById('anag-esercenti'), {
-  type: 'line',
-  data: {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [{
-      label: 'ESERCENTI',
-      backgroundColor: 'transparent',
-      borderColor: 'rgba(255,255,255,.55)',
-      pointBackgroundColor: coreui.Utils.getStyle('--cui-primary'),
-      data: [40,60,50,80,90],
-    }]
-  },
-  options: {
-    plugins: {
-      legend: {
-        display: false
-      }
-    },
-    maintainAspectRatio: false,
-    scales: {
-      x: {
-        grid: {
-          display: false,
-          drawBorder: false
-        },
-        ticks: {
-          display: false
-        }
-      },
-      y: {
-        min: 10,
-        max: 100,
-        display: false,
-        grid: {
-          display: false
-        },
-        ticks: {
-          display: false
-        }
-      }
-    },
-    elements: {
-      line: {
-        borderWidth: 1,
-        tension: 0.4
-      },
-      point: {
-        radius: 4,
-        hitRadius: 10,
-        hoverRadius: 4
-      }
-    }
-  }
-}); // eslint-disable-next-line no-unused-vars     -->
-   
-    
-    
-        
-
-// ajax_chart(cardChartEsercenti , "./api/anagrafiche_esercenti.php");
-
-    // function to update our chart
-//    function ajax_chart(chart, url, data) {
-//        var data = data || {};
-//        const valori = [];
-//        $.getJSON(url, data).done(function(response) {
-//          
-//           for(var key in response) {
-//               for (var key1 in response[key]) {
-//                    valori.push ( response[key][key1].quantity); // or you can iterate for multiple datasets
-//                }
-//              }
-//                      chart.data.datasets[0].data = valori;
-
-// PASSATI VALORI DI TEST PERCHE' NON PIU' DINAMICI
-//                      chart.data.datasets[0].data = [40,70,60,90,40];
-                      
-//            chart.update(); // finally update our chart
-//        });
-//    }
-    
-});
-    
-    </script>
-    
- 
